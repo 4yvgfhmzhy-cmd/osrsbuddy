@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OSRSBuddy</title>
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <style>body { margin: 0; background: #1a1209; }</style>
-</head>
-<body>
-  <div id="root"></div>
-  <script type="text/babel" data-presets="react,env">
-    const { useState, useEffect, useCallback, useRef } = React;
 
-
+import { useState, useEffect, useCallback, useRef } from "react";
+import Anthropic from "@anthropic-ai/sdk";
 
 // ── OSRS skill list (index matches hiscores CSV row order) ──
 const SKILLS = [
@@ -1071,7 +1057,7 @@ Give practical, specific OSRS advice based on THEIR actual stats. Be concise but
 }
 
 // ── Main App ──
-function OSRSTracker() {
+export default function OSRSTracker() {
   const [account, setAccount] = useState(null);
   const [skills, setSkills] = useState(SNAPSHOT.skills);
   const [tab, setTab] = useState("Skills");
@@ -1192,11 +1178,3 @@ function OSRSTracker() {
     </div>
   );
 }
-
-
-    ReactDOM.createRoot(document.getElementById("root")).render(
-      React.createElement(OSRSTracker, null)
-    );
-  </script>
-</body>
-</html>
